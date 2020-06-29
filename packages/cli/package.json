@@ -17,5 +17,6 @@
     "download-git-repo": "^3.0.2",
     "git-down-repo": "^2.4.3",
     "handlebars": "^4.7.6"
-  }
+  },
+  "gitHead": "a7844735aa2a37ab975adc022565aba7c29592b3"
 }

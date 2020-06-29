@@ -1,3 +1,4 @@
+```
 Usage: fatrife [options]
 
 Options:
@@ -7,3 +8,4 @@ Options:
 Commands:
   create <project-name>  create a front folder base on fatri-vue-framework
   help [command]         display help for command
+```
