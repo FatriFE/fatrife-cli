@@ -8,5 +8,8 @@
     "eslint": "^7.2.0",
     "lerna": "^3.22.1",
     "prettier": "^2.0.5"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0"
   }
 }

@@ -3,67 +3,51 @@
  * Created by starlee on 2020/06/15.
  */
 const program = require('commander')
-const UI = require('../lib/ui')
 const download = require('download-git-repo')
-const path = require('path')
-const Component = require('../lib/Component')
+const fs = require('fs')
+const chalk = require('chalk')
 
-const dotEnv = require('dotenv')
+function exsitFile(file){
+    return fs.existsSync(file)
+}
+
+const log = console.log
 
 program
     .version(require('../package.json').version)
     .name('fatrife')
     .usage('[options]')
 
+
+    /**
+     * 根据项目脚手架快速生成项目目录
+     */
 program
-    .command('new <component>')
-    .description('create a component from git repo or local module')
-    .option('-i --i18n', 'insert i18n construct with yaml', false)
-    .option('-p, --preset <presetName>', 'Skip prompts and use saved or remote preset')
-    .option('-d, --default', 'Skip prompts and use default preset')
-    .option('-m, --packageManager <command>', 'Use specified npm client when installing dependencies')
-    .option('-r, --registry <url>', 'Use specified npm registry when installing dependencies (only for npm)')
-    .option('-g, --git [message]', 'Force git initialization with initial commit message')
-    .option('-n, --no-git', 'Skip git initialization')
-    .option('-f, --force', 'Overwrite target directory if it exists')
-    .option('--merge', 'Merge target directory if it exists')
-    .option('-c, --clone', 'Use git clone when fetching remote preset')
-    .option('-x, --proxy', 'Use specified proxy when creating project')
-    .option('-b, --bare', 'Scaffold project without beginner instructions')
-    .option('--skipGetStarted', 'Skip displaying "Get started" instructions')
-    .action((name, cmd) => {
-        console.log('pull action ===', name, cleanArgs(cmd))
-        // new Component({name, i18n: cmd.i18n})
+    .command('create <project-name>')
+    .description('create a front folder base on fatri-vue-framework')
+    .action((name) => {
+        log(chalk.green('开始初始化项目...'))
+        if(exsitFile(name)) {
+            return log(chalk.red("当前目录下已存在该项目名称的目录或文件"))
+        }
+       
+        // 下载远端的代码
+        download('FatriFE/fatri-vue-framework', name, err => {
+            if(err) {
+                log(chalk.red('项目初始化失败'))  
+            }else {
+                log(chalk.green('项目初始化成功'))
+                log(chalk.blue('安装依赖:'))
+                log(chalk.blue(`cd ${name}  && yarn`))
+                log(chalk.blue('本地开发:'))
+                log(chalk.blue(`yarn start`))
+            }
+        })
     })
 
-program
-    .command('ui')
-    .description('insert a iframe document in public/index.html')
-    .action((name, cmd) => {
-        console.log(process.argv)
-        UI()
-    })
 
-program
-    .description('set mode')
-    .option('-m, --mode <env>', 'set config from .env.xx', '')
-    .action(name => {
-        dotEnv.config({path: path.resolve(process.cwd(), `.env${name.mode ? `.${name.mode}` : ''}`)})
-        console.log('mode cmd', process.env)
-    })
+
 
 program.parse(process.argv)
 
-
-function cleanArgs(cmd) {
-    const args = {}
-    cmd.options.forEach(o => {
-        const key = o.long.replace(/^--/, '')
-        if(typeof cmd[key] !== 'undefined' && typeof cmd[key] !== 'function') {
-            args[key] = cmd[key]
-        }
-    })
-
-    return args
-}
 
