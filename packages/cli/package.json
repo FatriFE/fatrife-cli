@@ -1,6 +1,6 @@
 {
   "name": "@fatrife/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "> TODO: description",
   "author": "Star <starlee.li@fatritech.com> (Shun)",
   "license": "ISC",
@@ -10,7 +10,6 @@
   "engines": {
     "node": ">=8.9"
   },
-  "devDependencies": {},
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^5.1.0",
