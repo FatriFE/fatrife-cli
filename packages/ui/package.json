@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/FatriFE/fatrife-cli/issues"
   },
-  "gitHead": "8a10027f1484e2daaf3325ec82da531d91f5d662"
+  "gitHead": "8a10027f1484e2daaf3325ec82da531d91f5d662",
+  "dependencies": {
+    "koa": "^2.13.0"
+  }
 }

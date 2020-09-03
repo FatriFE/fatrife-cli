@@ -1,7 +1,10 @@
-'use strict';
+const Koa = require('koa');
+const app = new Koa();
 
-module.exports = ui;
+app.use(ctx => {
+  ctx.body = 'Hello World';
+});
 
-function ui() {
-   console.log(111)
-}
+app.listen(3000);
+
+module.exports = app
