@@ -1,5 +1,6 @@
 const Koa = require('koa');
-const Vue = require('vue')
+const Vue = require('vue');
+const path = require('path')
 
 const chalk = require('chalk');
 const app = new Koa();
@@ -15,7 +16,7 @@ app.use(ctx => {
     })
 
     const renderer = require('vue-server-renderer').createRenderer({
-        template: require('fs').readFileSync('./html/index.template.html', 'utf-8')
+        template: require('fs').readFileSync(path.resolve(__dirname, './html/index.template.html'), 'utf-8')
       })
       
       renderer.renderToString(app, (err, html) => {
