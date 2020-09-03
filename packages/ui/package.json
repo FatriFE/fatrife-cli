@@ -25,6 +25,9 @@
   },
   "gitHead": "8a10027f1484e2daaf3325ec82da531d91f5d662",
   "dependencies": {
-    "koa": "^2.13.0"
+    "chalk": "^4.1.0",
+    "koa": "^2.13.0",
+    "vue": "^2.6.12",
+    "vue-server-renderer": "^2.6.12"
   }
 }

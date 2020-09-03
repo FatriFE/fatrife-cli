@@ -9,14 +9,14 @@ div.style.backgroundColor = 'red'
 document.body.appendChild(div)
 
 div.addEventListener('click', () => {
-  const buddleModel = document.getElementById('bunddleModel')
+  const buddleModel = document.getElementById('bundleModel')
   if(!buddleModel) createBuddleMode()
   else document.body.removeChild(buddleModel)
 })
 
 function createBuddleMode() {
   const buddleModel = document.createElement('div')
-  buddleModel.id = 'bunddleModel'
+  buddleModel.id = 'bundleModel'
   buddleModel.style.position = 'fixed'
   buddleModel.style.width = '80%'
   buddleModel.style.height = '80%'
@@ -25,8 +25,11 @@ function createBuddleMode() {
   buddleModel.style.zIndex = 1000
   buddleModel.style.border = '1px solid rgb(0,0,0)'
   buddleModel.innerHTML = `
+    <header style="display: flex;justify-content: space-between;padding: 10px;background-color: darkslateblue;">
+      <h3>FATRI UI</h3>
+      <a>进入完整版</a>
+    </header>
     <iframe width="100%" height="100%" src="http://localhost:3000" frameborder="0"></iframe>
   `
-
   document.body.appendChild(buddleModel)
 }
