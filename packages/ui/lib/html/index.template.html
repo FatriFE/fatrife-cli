@@ -33,10 +33,26 @@
 <body>
  
   <section>
-    <div class="menu-asides"></div>
+    <div class="menu-asides">
+      <button id="btn">btn demo test</button>
+    </div>
     <div class="app">
       <!--vue-ssr-outlet-->
     </div>
   </section>
 </body>
+<script>
+  window.addEventListener('load', () => {
+    if(window.top) {
+      window.top.postMessage({message: 'linked'}, '*')
+    }
+  })
+  
+
+  window.addEventListener('message',function(event){
+    if(event.origin !== window.location.origin) {
+    console.log('子页面收到数据', event)
+  }
+})
+</script>
 </html>

@@ -28,9 +28,33 @@ function createBuddleMode() {
   buddleModel.innerHTML = `
     <header style="display: flex;justify-content: space-between; align-items: center;padding: 10px;background-color: darkslateblue; color: #ffffff">
       <h3>FATRI UI</h3>
+      <button id="alink">发送数据</button>
       <a style="color: #ffffff" target="_blank" href="http://localhost:3000">进入完整版</a>
     </header>
-    <iframe width="100%" height="100%" src="http://localhost:3000" frameborder="0"></iframe>
+    <iframe id="iframeId" width="100%" height="100%" src="http://localhost:3000" frameborder="0"></iframe>
   `
   document.body.appendChild(buddleModel)
+
+  const alink = document.getElementById('alink')
+  alink.addEventListener('click', post, false)
 }
+
+
+
+function post() {
+  const frame = document.getElementById('iframeId')
+  frame.contentWindow.postMessage({ foo: 'foo' }, '*')
+}
+
+window.addEventListener('message', event => {
+  if(event.origin !== window.location.origin) {
+    console.log('父级元素收到的信息', event)
+
+    if(event.data.message === 'linked') {
+      console.log('成功建立通信')
+    }
+  }
+})
+
+
+
